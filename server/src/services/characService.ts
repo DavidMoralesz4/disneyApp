@@ -74,3 +74,16 @@ export const createCharService = async ({
     }
   }
 };
+
+export const updateCharService = async(id: string, {name, image, age, weight, history}: ICharacters) => {
+  try {
+    await Character.update(
+      {name: name, image: image, age: age, weight: weight, history: history},
+      {where: {id: id}}
+    )
+  } catch (error: unknown) {
+    if(error instanceof Error) {
+      throw new Error(error.message)
+    }
+  }
+}

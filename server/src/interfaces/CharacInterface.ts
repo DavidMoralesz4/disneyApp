@@ -4,8 +4,8 @@ export interface ICharacters {
     id?: number
     name: string
     image: string
-    weight: number
     age: number
+    weight: number
     history: string
     movie_id?: IMovie
 }

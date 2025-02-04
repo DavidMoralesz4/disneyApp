@@ -87,3 +87,24 @@ export const updateCharService = async(id: string, {name, image, age, weight, hi
     }
   }
 }
+
+
+export const deleteCharService = async(id: string) => {
+  try {
+    if(!id) {
+      throw new Error('Debes proporcionar un id')
+    }
+
+   await Character.destroy(
+      {
+        where: {
+          id: id
+        }
+      }
+    )
+  } catch (error: unknown) {
+    if(error instanceof Error) {
+      throw new Error(error.message)
+    }
+  }
+}

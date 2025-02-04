@@ -48,7 +48,7 @@ Character.init(
     timestamps: false,
     paranoid: true,
     // Si desea dar un nombre personalizado a la columna deleteAt
-    // deletedAt: 'deleted_at'
+    deletedAt: 'destroyTime',
   }
 );
 

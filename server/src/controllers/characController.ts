@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCharService, detailCharService, getCharService } from "../services/characService";
+import { createCharService, detailCharService, getCharService, updateCharService } from "../services/characService";
 
 export const getCharController = async (_: Request, res: Response) => {
   try {
@@ -12,7 +12,7 @@ export const getCharController = async (_: Request, res: Response) => {
   }
 };
 
-export const detailCharController = async(req: Request, res: Response) => {
+export const detailCharController = async(_: Request, res: Response) => {
     try {
         const charactersDetail = await detailCharService()
 
@@ -37,4 +37,20 @@ export const createCharController = async(req: Request, res: Response) => {
     }
   }
 };
+
+
+export const updateCharController = async (req: Request, res: Response): Promise<void> => {
+    const {name, image, age, weight, history} = req.body /// Parametros que envia un cliente
+    const {id} = req.params // Id del character
+
+    try {
+    await updateCharService(id, {name, image, age, weight, history})
+    res.status(200).json({message: 'Personaje actualizado con exito'})     
+    } catch (error: unknown) {
+        if(error instanceof Error) {
+            res.status(200).json(error.message)
+        }
+    }
+}
+
 

@@ -1,6 +1,13 @@
+import { Op } from "sequelize";
 import { ICharacters } from "../interfaces/CharacInterface";
 import Character from "../models/Characters";
 
+/*
+      findAll: Metodo
+      se usa para buscar todos los registros en la tabla que cumplan ciertas condiciones
+
+      Op: es un objeto que Sequelize proporciona para definir operadores lógicos en las consultas.
+*/
 export const getCharService = async () => {
   try {
     const characters = await Character.findAll({
@@ -28,6 +35,24 @@ export const detailCharService = async () => {
     }
 
     return charactersDetail;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const searchCharService = async (name: any, age: any) => {
+  try {
+    
+    const characFilter = await Character.findAll({
+      attributes: ["id", "name", "image"],
+      where: {
+        [Op.or]: [{ name: name }, { age: age }],
+      }
+    });
+
+    return characFilter
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);
@@ -75,36 +100,36 @@ export const createCharService = async ({
   }
 };
 
-export const updateCharService = async(id: string, {name, image, age, weight, history}: ICharacters) => {
+export const updateCharService = async (
+  id: string,
+  { name, image, age, weight, history }: ICharacters
+) => {
   try {
     await Character.update(
-      {name: name, image: image, age: age, weight: weight, history: history},
-      {where: {id: id}}
-    )
+      { name: name, image: image, age: age, weight: weight, history: history },
+      { where: { id: id } }
+    );
   } catch (error: unknown) {
-    if(error instanceof Error) {
-      throw new Error(error.message)
+    if (error instanceof Error) {
+      throw new Error(error.message);
     }
   }
-}
+};
 
-
-export const deleteCharService = async(id: string) => {
+export const deleteCharService = async (id: string) => {
   try {
-    if(!id) {
-      throw new Error('Debes proporcionar un id')
+    if (!id) {
+      throw new Error("Debes proporcionar un id");
     }
 
-   await Character.destroy(
-      {
-        where: {
-          id: id
-        }
-      }
-    )
+    await Character.destroy({
+      where: {
+        id: id,
+      },
+    });
   } catch (error: unknown) {
-    if(error instanceof Error) {
-      throw new Error(error.message)
+    if (error instanceof Error) {
+      throw new Error(error.message);
     }
   }
-}
+};

@@ -1,11 +1,61 @@
-import Character from "../models/Characters"
+import { ICharacters } from "../interfaces/CharacInterface";
+import Character from "../models/Characters";
 
-export const getCharService = async() => {
-    try {
-        const characters = await Character.findAll({ attributes: ["id", "name", "image"] });
-        return characters;
-      
-    } catch (error: any) {
-        throw new Error(error)
+export const getCharService = async () => {
+  try {
+    const characters = await Character.findAll({
+      attributes: ["id", "name", "image"],
+    });
+
+    if (!characters) {
+      throw new Error("No hay personajes");
     }
-}
+
+    return characters;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const createCharService = async ({
+  name,
+  image,
+  age,
+  history,
+  weight,
+}: ICharacters) => {
+  try {
+    if (!name) throw new Error("Por favor ingresa un nombre");
+
+    if (!image) {
+      throw new Error("Por favor ingresa una url de imagen");
+    } else if (image.length >= 255) {
+      throw new Error("La url de la imagen es muy larga");
+    }
+
+    if (!age) throw new Error("Por favor ingresa una edad");
+
+    if (!history) {
+      throw new Error("Por favor ingresa una historia corta");
+    } else if (history.length >= 45) {
+      throw new Error("La historia es muy larga");
+    }
+
+    if (!weight) throw new Error("Por favor ingresa un peso");
+
+    return await Character.create({
+      name: name,
+      image: image,
+      age: age,
+      history: history,
+      weight: weight,
+    });
+
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCharController, detailCharController, getCharController, updateCharController } from "../controllers/characController";
+import { createCharController, deleteCharController, detailCharController, getCharController, updateCharController } from "../controllers/characController";
 
 
 export const characRoutes: Router = Router()
@@ -13,4 +13,4 @@ characRoutes.post('/characters', createCharController)
 
 characRoutes.put('/characters/:id', updateCharController)
 
-// characRoutes.delete('/characters')
+characRoutes.delete('/characters/:id', deleteCharController)

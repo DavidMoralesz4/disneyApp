@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCharController, deleteCharController, detailCharController, getCharController, updateCharController } from "../controllers/characController";
+import { createCharController, deleteCharController, detailCharController, getCharController, searchCharController, updateCharController } from "../controllers/characController";
 
 
 export const characRoutes: Router = Router()
@@ -8,6 +8,8 @@ export const characRoutes: Router = Router()
 characRoutes.get('/characters', getCharController)
 
 characRoutes.get('/characters/detail', detailCharController)
+
+characRoutes.get('/characters/search', searchCharController)
 
 characRoutes.post('/characters', createCharController)
 

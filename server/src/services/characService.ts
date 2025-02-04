@@ -19,6 +19,22 @@ export const getCharService = async () => {
   }
 };
 
+export const detailCharService = async () => {
+  try {
+    const charactersDetail = await Character.findAll();
+
+    if (!charactersDetail) {
+      throw new Error("Hubo un problema en los detalles");
+    }
+
+    return charactersDetail;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
+
 export const createCharService = async ({
   name,
   image,
@@ -52,7 +68,6 @@ export const createCharService = async ({
       history: history,
       weight: weight,
     });
-
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCharService, getCharService } from "../services/characService";
+import { createCharService, detailCharService, getCharService } from "../services/characService";
 
 export const getCharController = async (_: Request, res: Response) => {
   try {
@@ -11,6 +11,19 @@ export const getCharController = async (_: Request, res: Response) => {
     }
   }
 };
+
+export const detailCharController = async(req: Request, res: Response) => {
+    try {
+        const charactersDetail = await detailCharService()
+
+        res.status(200).json(charactersDetail)
+    } catch (error: unknown) {
+        if(error instanceof Error) {
+            res.status(500).json({message: error.message})
+        }
+    }
+}
+
 
 export const createCharController = async(req: Request, res: Response) => {
   const { name, image, age, weight, history } = req.body;
@@ -24,5 +37,4 @@ export const createCharController = async(req: Request, res: Response) => {
     }
   }
 };
-
 

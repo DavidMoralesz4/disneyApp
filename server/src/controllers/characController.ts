@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCharService, detailCharService, getCharService, updateCharService } from "../services/characService";
+import { createCharService, deleteCharService, detailCharService, getCharService, updateCharService } from "../services/characService";
 
 export const getCharController = async (_: Request, res: Response) => {
   try {
@@ -39,7 +39,7 @@ export const createCharController = async(req: Request, res: Response) => {
 };
 
 
-export const updateCharController = async (req: Request, res: Response): Promise<void> => {
+export const updateCharController = async (req: Request, res: Response) => {
     const {name, image, age, weight, history} = req.body /// Parametros que envia un cliente
     const {id} = req.params // Id del character
 
@@ -48,9 +48,24 @@ export const updateCharController = async (req: Request, res: Response): Promise
     res.status(200).json({message: 'Personaje actualizado con exito'})     
     } catch (error: unknown) {
         if(error instanceof Error) {
-            res.status(200).json(error.message)
+            res.status(500).json(error.message)
         }
     }
 }
+
+
+export const deleteCharController = async (req: Request, res: Response) => {
+    const {id} = req.params
+
+    try {        
+        await deleteCharService(id)
+        res.status(200).json({message: 'Personaje elimado con exito!'})
+    } catch (error: unknown) {
+        if(error instanceof Error) {
+            res.status(500).json({message: error.message})
+        }
+    }
+}
+
 
 

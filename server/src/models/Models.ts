@@ -90,8 +90,7 @@ Movies.init(
     tableName: "movies",
     modelName: "Movies",
     timestamps: false,
-    // paranoid: true
-    deletedAt: "destroyTime",
+    paranoid: true,
   }
 );
 

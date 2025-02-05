@@ -136,3 +136,22 @@ export const updateMovieService = async (
     }
   }
 };
+
+
+export const deleteMovieService = async(id: string) => {
+  try {
+    if (!id) {
+      throw new Error("Debes proporcionar un id");
+    }
+
+    await Movies.destroy({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+}

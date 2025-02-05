@@ -46,7 +46,7 @@ A continuación, se presentan los requerimientos del proyecto y su desglose en t
 
 #### Estimación total aprox: 5/6 horas.
 --------------------------------------------------------------
-### 1. CRUD de Peliculas
+### 2. CRUD de Peliculas
 
 #### Descripción: Crear, Leer, Actualizar, Eliminar y Filtrar peliculas de disney.
 
@@ -85,3 +85,31 @@ A continuación, se presentan los requerimientos del proyecto y su desglose en t
 
 
 #### Estimación total aprox: 6/7 horas.
+----------------------------------
+### 3. Autenticación de Usuarios
+
+#### Descripción: El usuario necesita un token que obtendrá al autenticarse.
+
+#### Creación de la tabla usuarios - MySQL
+- Campos de la tabla: nombre de ususario, correo electrónico y contraseña (30 min).
+
+#### Modelo Users en sequelize
+- Propiedades nombre de ususario, correo electrónico y contraseña (25 min).
+
+#### Endpoints 
+- /auth/login ruta POST para iniciar la sesion (20 min).
+- /auth/register ruta POST para crear la cuenta (20 min).
+
+#### Controladores
+- Controlador para iniciar la sesion existente - campos requeridos - email y password (30 min).
+- Controlador para registrar la cuenta del usuario con los campos del modelo (30 min).
+
+#### Servicios
+- Servicio para verificar la sesion del usuario haciendo uso de JWT (30 min).
+- Servicio para crear la cuenta del usuario * Encriptar contraseña guardada en DB (32 min).
+
+#### Estimación total aprox: 2/3 horas.
+
+
+
+

@@ -84,7 +84,7 @@ export const createCharService = async ({
 
     if (!history) {
       throw new Error("Por favor ingresa una historia corta");
-    } else if (history.length >= 45) {
+    } else if (history.length >= 255) {
       throw new Error("La historia es muy larga");
     }
 

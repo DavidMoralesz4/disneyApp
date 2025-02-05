@@ -1,5 +1,6 @@
 import { Op } from "sequelize";
 import { Character, Movies } from "../models/Models";
+import { IMovie } from "../interfaces/MovieInterface";
 
 export const getMovieService = async () => {
   try {
@@ -42,11 +43,9 @@ export const detailMovieService = async (id: string) => {
 
 export const searchMovieService = async (title: any, date_release: any) => {
   try {
-
     const allDates = await Movies.findAll();
-    
-    
-    if(title !== undefined ) {
+
+    if (title !== undefined) {
       return await Movies.findAll({
         attributes: ["id", "title", "image", "date_release"],
         where: {
@@ -61,8 +60,42 @@ export const searchMovieService = async (title: any, date_release: any) => {
         .sort((a: any, b: any) => a.date_release - b.date_release);
     }
 
-  
     // return movieFiltered;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const createMovieService = async ({
+  title,
+  image,
+  date_release,
+  score,
+}: IMovie) => {
+  try {
+    if (!title) throw new Error("Por favor ingresa un titulo de pelicula");
+
+    if (!image) {
+      throw new Error("Por favor ingresa una url de imagen");
+    } else if (image.length >= 255) {
+      throw new Error("La url de la imagen es muy larga");
+    }
+
+    if (!date_release)
+      throw new Error("Por favor ingresa una fecha de lanzamiento");
+
+    if (!score) {
+      throw new Error("Por favor ingresa un puntaje");
+    }
+
+    return await Movies.create({
+      title: title,
+      image: image,
+      date_release: date_release,
+      score: score,
+    });
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);

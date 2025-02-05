@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { detailMovieService, getMovieService } from "../services/movieService";
+import { detailMovieService, getMovieService, searchMovieService } from "../services/movieService";
 
 export const getMovieController = async (_: Request, res: Response) => {
   try {
@@ -27,3 +27,16 @@ export const detailMovieController = async (req: Request, res: Response) => {
   }
 };
 
+
+export const searchMovieController = async(req: Request, res: Response) => {
+    const {title, gender, date_release} = req.query
+    
+    try {   
+        const movieFiltered = await searchMovieService(title, date_release)
+        res.status(200).json(movieFiltered)
+    } catch (error: unknown) {
+        if(error instanceof Error){
+            res.status(500).json({message: error.message})
+        }
+    }
+}

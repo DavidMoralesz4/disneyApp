@@ -1,6 +1,6 @@
 import { Op } from "sequelize";
 import { ICharacters } from "../interfaces/CharacInterface";
-import Character from "../models/Characters";
+import { CharacMovie, Character, Movies } from "../models/Models";
 
 /*
       findAll: Metodo
@@ -26,15 +26,20 @@ export const getCharService = async () => {
   }
 };
 
-export const detailCharService = async () => {
+export const detailCharService = async (id: string) => {
   try {
-    const charactersDetail = await Character.findAll();
+    const characterDetail = await Character.findByPk(id, {
+      include: {
+        model: Movies, // Usamos Movie (singular)
+        attributes: ["title"],
+      },
+    });
 
-    if (!charactersDetail) {
+    if (!characterDetail) {
       throw new Error("Hubo un problema en los detalles");
     }
 
-    return charactersDetail;
+    return characterDetail;
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);
@@ -44,15 +49,14 @@ export const detailCharService = async () => {
 
 export const searchCharService = async (name: any, age: any) => {
   try {
-    
     const characFilter = await Character.findAll({
       attributes: ["id", "name", "image"],
       where: {
         [Op.or]: [{ name: name }, { age: age }],
-      }
+      },
     });
 
-    return characFilter
+    return characFilter;
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);

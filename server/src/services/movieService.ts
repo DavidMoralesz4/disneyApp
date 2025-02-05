@@ -1,4 +1,4 @@
-import { Movies } from "../models/Movies";
+import { Movies } from "../models/Models";
 
 export const getMovieService = async () => {
   try {

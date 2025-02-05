@@ -102,3 +102,37 @@ export const createMovieService = async ({
     }
   }
 };
+
+export const updateMovieService = async (
+  /// Por el momento todos los campos seran requeridos para actualizar la pelicula
+  id: string,
+  { title, image, date_release, score }: IMovie
+) => {
+  try {
+
+    if(!title) {
+      throw new Error('El titulo de la pelicula es requerido')
+    }
+
+    if(!image) {
+      throw new Error('La imagen del personaje es requerida')
+    }
+
+    if(!date_release) {
+      throw new Error('La fecha de estreno/lanzamiento es requerida')
+    }
+
+    if(!score) {
+      throw new Error('El puntaje es requerido')
+    }
+
+    await Movies.update(
+      { title: title, image: image, date_release: date_release, score: score },
+      { where: { id: id } }
+    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+};

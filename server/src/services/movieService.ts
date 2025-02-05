@@ -1,4 +1,4 @@
-import { Movies } from "../models/Models";
+import { Character, Movies } from "../models/Models";
 
 export const getMovieService = async () => {
   try {
@@ -17,3 +17,25 @@ export const getMovieService = async () => {
     }
   }
 };
+
+
+export const detailMovieService = async(id: string) => {
+    try {
+      const movieDetail = await Movies.findByPk(id, {
+        include: {
+          model: Character, // Usamos Movie (singular)
+          attributes: ["name"],
+        },
+      });
+  
+      if (!movieDetail) {
+        throw new Error("Hubo un problema en los detalles");
+      }
+  
+      return movieDetail;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      }
+    }
+}

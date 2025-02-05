@@ -7,7 +7,7 @@ export const characRoutes: Router = Router()
 
 characRoutes.get('/characters', getCharController)
 
-characRoutes.get('/characters/detail', detailCharController)
+characRoutes.get('/characters/:id', detailCharController)
 
 characRoutes.get('/characters/search', searchCharController)
 

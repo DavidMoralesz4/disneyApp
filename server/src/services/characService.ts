@@ -1,7 +1,6 @@
 import { Op } from "sequelize";
 import { ICharacters } from "../interfaces/CharacInterface";
-import { CharacMovie, Character, Movies } from "../models/Models";
-
+import { Character, Movies } from "../models/Models";
 /*
       findAll: Metodo
       se usa para buscar todos los registros en la tabla que cumplan ciertas condiciones

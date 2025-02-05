@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { detailMovieService, getMovieService, searchMovieService } from "../services/movieService";
+import { createMovieService, detailMovieService, getMovieService, searchMovieService } from "../services/movieService";
 
 export const getMovieController = async (_: Request, res: Response) => {
   try {
@@ -40,3 +40,16 @@ export const searchMovieController = async(req: Request, res: Response) => {
         }
     }
 }
+
+export const createMovieController = async (req: Request, res: Response) => {
+  const { title, image, date_release, score } = req.body;
+  try {
+    await createMovieService({ title, image, date_release, score });
+
+    res.status(200).json({ message: "La pelicula se creo con exito!" });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+};

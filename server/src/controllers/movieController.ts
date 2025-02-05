@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createMovieService, detailMovieService, getMovieService, searchMovieService, updateMovieService } from "../services/movieService";
+import { createMovieService, deleteMovieService, detailMovieService, getMovieService, searchMovieService, updateMovieService } from "../services/movieService";
 
 export const getMovieController = async (_: Request, res: Response) => {
   try {
@@ -43,7 +43,7 @@ export const searchMovieController = async(req: Request, res: Response) => {
 
 export const createMovieController = async (req: Request, res: Response) => {
   const { title, image, date_release, score } = req.body;
-  
+
   try {
     await createMovieService({ title, image, date_release, score });
 
@@ -65,6 +65,19 @@ export const updateMovieController = async(req: Request, res: Response) => {
     } catch (error: unknown) {
       if (error instanceof Error) {
         res.status(500).json(error.message);
+      }
+    }
+}
+
+export const deleteMovieController = async(req: Request, res: Response) => {
+   const { id } = req.params;
+  
+    try {
+      await deleteMovieService(id);
+      res.status(200).json({ message: "Pelicula eliminada con exito!" });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        res.status(500).json({ message: error.message });
       }
     }
 }

@@ -20,9 +20,11 @@ export const getCharController = async (req: Request, res: Response) => {
   }
 };
 
-export const detailCharController = async (_: Request, res: Response) => {
+export const detailCharController = async (req: Request, res: Response) => {
+  const {id} = req.params
+  
   try {
-    const charactersDetail = await detailCharService();
+    const charactersDetail = await detailCharService(id);
 
     res.status(200).json(charactersDetail);
   } catch (error: unknown) {

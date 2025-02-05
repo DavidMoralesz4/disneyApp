@@ -9,7 +9,7 @@ characRoutes.get('/characters', getCharController)
 
 characRoutes.get('/characters/:id', detailCharController)
 
-characRoutes.get('/characters/search', searchCharController)
+characRoutes.get('/characters/search/cha', searchCharController)
 
 characRoutes.post('/characters', createCharController)
 

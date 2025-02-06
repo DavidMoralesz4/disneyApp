@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
-export const PORT = process.env.PORT;
-export const DB_PASSWORD = process.env.DB_PASSWORD
-export const DB_PORT = process.env.DB_PORT
-export const DB_HOST = process.env.DB_HOST
+const { PORT, DB_PASSWORD, DB_PORT, DB_HOST, SECRET_KEY} = process.env;
+
+export { PORT, DB_PASSWORD, DB_PORT, DB_HOST, SECRET_KEY};

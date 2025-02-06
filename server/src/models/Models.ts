@@ -119,13 +119,54 @@ CharacMovie.init(
   },
   {
     sequelize,
-    tableName: 'characMovie',
-    modelName: 'CharacMovie',
+    tableName: "characMovie",
+    modelName: "CharacMovie",
     timestamps: false,
     deletedAt: "destroyTime",
-
   }
 );
 
-Movies.belongsToMany(Character, { through: 'characMovie', foreignKey: 'movieId'})
-Character.belongsToMany(Movies, {through: 'characMovie', foreignKey: 'characterId'})
+Movies.belongsToMany(Character, {
+  through: "characMovie",
+  foreignKey: "movieId",
+});
+Character.belongsToMany(Movies, {
+  through: "characMovie",
+  foreignKey: "characterId",
+});
+
+export class Users extends Model {
+  declare id: number;
+  declare username: string;
+  declare email: string;
+  declare password: string;
+}
+
+Users.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    tableName: "users",
+    modelName: "Users",
+    timestamps: false,
+  }
+);

@@ -3,6 +3,9 @@
 Desarrollar una API que permita explorar el universo Disney, facilitando conocer y modificar los 
 personajes, y entender las películas en las que estos participaron. Además, deberá exponer la 
 información de manera que cualquier frontend pueda consumirla.
+#### Stack Tecnológico:
+###### Nodejs | Typescript | MySQL | Sequelize | Express | JWT 
+
 ## Requerimientos
 A continuación, se presentan los requerimientos del proyecto y su desglose en tareas, junto con las estimaciones.
 

@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from 'cors'
 import { characRoutes } from './routes/characRoutes';
 import { movieRouter } from './routes/movieRoutes';
+import { authRouter } from './routes/authRoutes';
 
 export const server = express()
 
@@ -13,3 +14,4 @@ server.use(express.json())
 
 server.use('/api', characRoutes)
 server.use('/api', movieRouter)
+server.use('/auth', authRouter)

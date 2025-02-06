@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { loginService, registerService } from "../services/authService";
-import jwt from "jsonwebtoken";
 
 export const registerController = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
@@ -26,3 +25,15 @@ export const loginController = async(req: Request, res: Response): Promise<any> 
     }
   }
 };
+
+
+export const logoutController = async(req: Request, res: Response) => {
+    try {
+        res.clearCookie("access_token");
+        res.status(200).json({ message: "Sesion cerrada" });
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+            res.status(500).json({ message: error.message });
+          }
+      }
+}

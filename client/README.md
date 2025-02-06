@@ -1,50 +1,56 @@
-# React + TypeScript + Vite
+# Proyecto Frontend | Desarrollo con React
+Desarrollo de interfaz de usuario y consumo del servidor para exponer la informacion y funcionalidades.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Stack Tecnológico:
+###### React | Typescript | React Router | MateriaUI | CSS Modules | Redux 
 
-Currently, two official plugins are available:
+## Requerimientos
+A continuación, se presentan los requerimientos del proyecto y su desglose en tareas, junto con las estimaciones.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Listar personajes
 
-## Expanding the ESLint configuration
+#### Descripción: Listar los personajes de la API.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### Creacion de componentes
+- Crear (30 min).
+- Configurar la base de datos y el modelo characters (30 min).
+#### Crear personajes
+- Ruta: POST/characters (25 min).
+- Controlador (25 min).
+- Servicio para crear un personaje con las propiedades del modelo (30 min).
 
-- Configure the top-level `parserOptions` property like this:
+### 1. Listar peliculas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+#### Descripción: Listar las peliculas de la API.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Creacion de componentes
+- Crear (30 min).
+- Configurar la base de datos y el modelo characters (30 min).
+#### Crear peliculas 
+- Ruta: POST/characters (25 min).
+- Controlador (25 min).
+- Servicio para crear un personaje con las propiedades del modelo (30 min).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 1. Inicio de sesion
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Descripción: Acceder al usuario.
+
+#### Creacion de componentes
+- Crear (30 min).
+- Configurar la base de datos y el modelo characters (30 min).
+#### Crear peliculas 
+- Ruta: POST/characters (25 min).
+- Controlador (25 min).
+- Servicio para crear un personaje con las propiedades del modelo (30 min).
+
+### 1. Registro
+
+#### Descripción: Acceder al usuario.
+
+#### Creacion de componentes
+- Crear (30 min).
+- Configurar la base de datos y el modelo characters (30 min).
+#### Crear peliculas 
+- Ruta: POST/characters (25 min).
+- Controlador (25 min).
+- Servicio para crear un personaje con las propiedades del modelo (30 min).

@@ -1,5 +1,7 @@
 import { Users } from "../models/Models";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { SECRET_KEY } from "../envs/envs";
 
 export const registerService = async (
   username: string,
@@ -32,4 +34,36 @@ export const registerService = async (
       throw new Error(error.message);
     }
   }
+};
+
+export const loginService = async (email: string, password: string) => {
+    // 1. Buscar el usurio por correo - aqui tenemos el usuario
+    const user = await Users.findOne({ where: { email } });
+    
+    /// * validacion de correo 
+    if (!user) {
+      throw new Error("El correo no se encuentra registrado");
+    }
+
+    // 2. Comparamos la contrasena que nos pasan con la que ya esta almacenada
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    // * validamos
+    if (!isValidPassword) {
+      throw new Error("La contrasena es incorrecta");
+    }
+
+    if(!SECRET_KEY) {
+      throw new Error('La clave secreta del JWT no esta configurada')
+    }
+
+    const token = jwt.sign(
+      {username: user.username, email: user.email,},
+      SECRET_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+
+    // const {password: _, ...userWithoutPassowrd} = user.toJSON()  // Eliminar contraseña del objeto usuario
+    return {user, token}
 };

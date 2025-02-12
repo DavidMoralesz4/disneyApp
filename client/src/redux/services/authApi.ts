@@ -23,7 +23,28 @@ export const authApi = createApi({
         };
       },
     }),
+
+    registerUser: build.mutation({
+      query: (body: {username: string, email:string, password:string}) => {
+        return {
+          url: "/register",
+          method: "POST",
+          credentials: "include",
+          body
+        }
+      }
+    }),
+
+    logoutUser: build.query({
+      query: () => {
+        return {
+          url: "/logout",
+          method: "GET",
+          credentials: "include"
+        }
+      }
+    })
   }),
 });
 
-export const { useLoginUserMutation } = authApi;
+export const { useLoginUserMutation, useLazyLogoutUserQuery, useRegisterUserMutation } = authApi;

@@ -1,0 +1,87 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 90px;
+}
+
+.containerTwo {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  height: 490px;
+}
+
+.inputsContainer {
+  position: relative;
+  top: -30px;
+}
+
+.containerTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleOne {
+  font-size: 20px;
+  text-decoration: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: "semibold";
+  font-weight: bold;
+}
+
+.titleTwo {
+  position: relative;
+  top: -25px;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: "semibold";
+}
+
+.titleThree {
+  font-size: 20px;
+  font-weight: "semibold";
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Inputs {
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  padding-left: 20px;
+  padding: 10px;
+}
+
+.buttonLogin {
+  position: relative;
+  top: -25px;
+  text-align: center;
+  width: 80%;
+  height: 35px;
+}
+
+.logo {
+  position: relative;
+  top: 20px;
+  width: 145px;
+  height: 100px;
+}
+
+
+.textRegister{
+  position: relative;
+  top: -25px;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: "semibold";
+}

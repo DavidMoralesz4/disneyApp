@@ -1,6 +1,7 @@
-import { Navigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { useAppSelector } from "../../redux/hooks";
 import homeStyles from './home.module.css'
+import Navbar from "../../components/nav/Navbar";
 
 export default function HomePage() {
   const user = useAppSelector((state) => state.userAuth.user);
@@ -14,8 +15,9 @@ export default function HomePage() {
   if (user) 
     return (
       <div className={homeStyles.container}>
-        <h1 className={homeStyles.title}>Bienvenido {user.email} 🚀</h1>
-        <h2>Hola</h2>
+        <Navbar />
+
+        <Outlet/>
       </div>
     );
 }

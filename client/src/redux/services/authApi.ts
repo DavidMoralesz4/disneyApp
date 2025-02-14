@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface IUser {
-
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export const authApi = createApi({
@@ -25,26 +24,29 @@ export const authApi = createApi({
     }),
 
     registerUser: build.mutation({
-      query: (body: {username: string, email:string, password:string}) => {
+      query: (body: { username: string; email: string; password: string }) => {
         return {
           url: "/register",
           method: "POST",
           credentials: "include",
-          body
-        }
-      }
+          body,
+        };
+      },
     }),
 
-    logoutUser: build.query({
+    logoutUsers: build.query({
       query: () => {
         return {
-          url: "/logout",
-          method: "GET",
-          credentials: "include"
-        }
-      }
-    })
+      url: "/logout",
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginUserMutation, useLazyLogoutUserQuery, useRegisterUserMutation } = authApi;
+export const {
+  useLoginUserMutation,
+  useLazyLogoutUsersQuery,
+  useRegisterUserMutation,
+} = authApi;

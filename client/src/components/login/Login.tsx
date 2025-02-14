@@ -5,6 +5,8 @@ import { NavLink, useNavigate } from "react-router";
 import { useLoginUserMutation } from "../../redux/services/authApi";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/userAuthSlice";
+import {toast} from 'sonner'
+
 
 interface IFormData {
   email: string;
@@ -21,8 +23,10 @@ export default function Login() {
     try {
       const dataUser = await login(data);
       dispatch(setUser(dataUser.data.user));
+      toast.success('Has iniciado con exito!')
       navigate("/home");
     } catch (error) {
+      toast.error('Ops! No pudiste ingresar.')
       throw new Error("Error al inciar sesion");
     }
   };

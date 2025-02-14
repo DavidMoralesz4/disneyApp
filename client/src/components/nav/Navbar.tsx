@@ -18,7 +18,6 @@ export default function Navbar() {
   return (
     <>
       <nav className={navStyle.navbar}>
-        <ul className={navStyle.ul1}>
           <li className={navStyle.logoLi}>
             <img
               src="./Disney-LOGO-vector-01.png"
@@ -26,10 +25,11 @@ export default function Navbar() {
               className={navStyle.logoDisney}
             />
           </li>
+        <ul className={navStyle.ul1}>
           <NavLink
             to="/home"
             style={({ isActive }) => {
-              return isActive ? { color: "plum" } : {};
+              return isActive ? { color: "plum", textDecoration: 'none' } : { color: 'black', textDecoration: 'none'};
             }}
           >
             <li>Inicio</li>
@@ -38,7 +38,7 @@ export default function Navbar() {
           <NavLink
             to="/characters"
             style={({ isActive }) => {
-              return isActive ? { color: "plum" } : {};
+              return isActive ? { color: "plum", textDecoration: 'none' } : {color: 'black', textDecoration: 'none'};
             }}
           >
             <li>Personajes</li>
@@ -47,13 +47,13 @@ export default function Navbar() {
           <NavLink
             to="/movies"
             style={({ isActive }) => {
-              return isActive ? { color: "plum" } : {};
+              return isActive ? { color: "plum", textDecoration: 'none' } : {color: 'black', textDecoration: 'none'};
             }}
           >
             <li>Peliculas</li>
           </NavLink>
         </ul>
-        
+
         <ul className={navStyle.ul2}>
           <span className={navStyle.logout} onClick={handleLogout}>
             <LogoutIcon fontSize="large" className={navStyle.logoutIcon} />
@@ -61,7 +61,7 @@ export default function Navbar() {
 
           <NavLink to={"/profile"}>
             <li className={navStyle.user}>
-              <AccountCircleIcon fontSize="large" />
+              <AccountCircleIcon fontSize="large"  color="action"/>
             </li>
           </NavLink>
         </ul>

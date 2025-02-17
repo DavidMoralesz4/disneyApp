@@ -52,3 +52,9 @@ li {
 .logout {
   cursor: pointer;
 }
+
+.containerModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

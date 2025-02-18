@@ -5,6 +5,8 @@
   justify-content: space-between;
   align-items: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  padding-bottom: 90px;
 }
 
 .logoLi {

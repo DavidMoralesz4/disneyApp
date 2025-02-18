@@ -1,6 +1,9 @@
+import CardsComponent from "../../components/cards/CardsComponent";
 
 export default function CharacterPage() {
   return (
-    <div>CharacterPage</div>
-  )
+    <div>
+      <CardsComponent />
+    </div>
+  );
 }

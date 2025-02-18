@@ -1,0 +1,7 @@
+.allCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; /* Espacio entre cards */
+    padding-left: 45px;
+    justify-content: center;
+}

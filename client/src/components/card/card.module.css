@@ -1,0 +1,21 @@
+.cardContainer {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.cardImg {
+    width: 200px;
+    height: 200px;
+}
+
+.cardName {
+    font-size: 16px;
+}

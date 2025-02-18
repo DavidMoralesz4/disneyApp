@@ -6,7 +6,6 @@ import ProfileComponent from "../profile/ProfileComponent";
 import { Box, Modal } from "@mui/material";
 
 export default function Navbar() {
-  // const [openProfile, setOpenProfile] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);

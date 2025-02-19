@@ -26,7 +26,7 @@ export default function Navbar() {
             to="/home"
             style={({ isActive }) => {
               return isActive
-                ? { color: "plum", textDecoration: "none" }
+                ? { color: "#00879E", textDecoration: "none" }
                 : { color: "black", textDecoration: "none" };
             }}
           >
@@ -37,7 +37,7 @@ export default function Navbar() {
             to="/characters"
             style={({ isActive }) => {
               return isActive
-                ? { color: "plum", textDecoration: "none" }
+                ? { color: "#00879E", textDecoration: "none" }
                 : { color: "black", textDecoration: "none" };
             }}
           >
@@ -48,7 +48,7 @@ export default function Navbar() {
             to="/movies"
             style={({ isActive }) => {
               return isActive
-                ? { color: "plum", textDecoration: "none" }
+                ? { color: "#00879E", textDecoration: "none" }
                 : { color: "black", textDecoration: "none" };
             }}
           >

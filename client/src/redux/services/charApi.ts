@@ -1,10 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Characters {
-    id: string
-    name: string;
-    image: string;
-  }
+  id: string;
+  name: string;
+  image: string;
+}
+
+interface IMovies {
+  title: string;
+}
+
+interface CharactersDetail {
+  name: string;
+  image: string;
+  age: number;
+  weight: number;
+  history: string;
+  movies: IMovies;
+}
 
 export const charApi = createApi({
   reducerPath: "charApi",
@@ -16,11 +29,21 @@ export const charApi = createApi({
         return {
           url: "/characters",
           credentials: "include",
-          method: "GET"
+          method: "GET",
+        };
+      },
+    }),
+
+    detailChar: build.query<CharactersDetail, string>({
+      query: (id) => {
+        return {
+          url: `/characters/${id}`,
+          credentials: "include",
+          method: "GET",
         };
       },
     }),
   }),
 });
 
-export const { useGetCharactersQuery } = charApi;
+export const { useGetCharactersQuery, useDetailCharQuery } = charApi;

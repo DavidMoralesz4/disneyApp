@@ -1,7 +1,39 @@
 .allCards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px; /* Espacio entre cards */
-    padding-left: 45px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px; /* Espacio entre cards */
+  padding-left: 45px;
+  justify-content: center;
+}
+
+.modal {
+  background-color: rgba(43, 72, 109, 0.856);
+}
+
+.containerDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 80px;
+}
+
+.btn {
+  position: relative;
+  top: 40px;
+    width: 40px;
+  height: 30px;
+  border-radius: 20px;
+  font-size: 9px;
+  border: 0;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.btn:hover {
+    background-color: red;
+    color: white;
 }

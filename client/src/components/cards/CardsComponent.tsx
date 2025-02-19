@@ -1,18 +1,70 @@
-import { useGetCharactersQuery } from "../../redux/services/charApi";
+import { Box, Modal } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  useDetailCharQuery,
+  useGetCharactersQuery,
+} from "../../redux/services/charApi";
 import CardComponent from "../card/CardComponent";
 import cardsStyle from "./cards.module.css";
+import DetailCards from "../detail/DetailCards";
+import { useState } from "react";
 
 export default function CardsComponent() {
   const { data, error, isLoading } = useGetCharactersQuery(null);
+  const [open, setOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const { data: character } = useDetailCharQuery(selectedId!, {
+    skip: !selectedId,
+  });
+
+  const handleOpen = (id: string) => {
+    setSelectedId(id);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedId(null);
+  };
 
   if (isLoading) return <p>Cargando...</p>;
   if (error) return <p>Error al cargar los personajes</p>;
 
   return (
-    <div className={cardsStyle.allCards}>
-      {data?.map((chara) => (
-        <CardComponent key={chara.id} image={chara.image} name={chara.name} />
-      ))}
-    </div>
+    <>
+      <div className={cardsStyle.allCards}>
+        {data?.map((chara) => (
+          <CardComponent
+            key={chara.id}
+            image={chara.image}
+            name={chara.name}
+            onClick={() => handleOpen(chara.id)}
+          />
+        ))}
+      </div>
+
+      <Modal open={open} onClose={handleClose} className={cardsStyle.modal}>
+        <Box>
+          {character ? (
+            <div className={cardsStyle.containerDetails}>
+              <DetailCards
+                name={character.name}
+                image={character.image}
+                age={character.age}
+                history={character.history}
+                movies={character.movies}
+                weight={character.weight}
+              />
+              <button className={cardsStyle.btn} onClick={handleClose}>
+                <CloseIcon />
+              </button>
+            </div>
+          ) : (
+            <p>Cargando detalles...</p>
+          )}
+        </Box>
+      </Modal>
+    </>
   );
 }

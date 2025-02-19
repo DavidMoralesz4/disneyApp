@@ -1,19 +1,26 @@
-import { Box, Modal } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, Modal, TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   useDetailCharQuery,
+  useGetAllCharQuery,
   useGetCharactersQuery,
 } from "../../redux/services/charApi";
 import CardComponent from "../card/CardComponent";
 import cardsStyle from "./cards.module.css";
 import DetailCards from "../detail/DetailCards";
 import { useState } from "react";
+import searchStyle from '../../components/searchBar/search.module.css'
 
 export default function CardsComponent() {
-  const { data, error, isLoading } = useGetCharactersQuery(null);
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [search, setSearch] = useState('')
+  const { data, isLoading, error} = useGetCharactersQuery(search);
+  const {data: allCharacters} = useGetAllCharQuery('')
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value)    
+  }
   const { data: character } = useDetailCharQuery(selectedId!, {
     skip: !selectedId,
   });
@@ -33,15 +40,39 @@ export default function CardsComponent() {
 
   return (
     <>
+      <div className={cardsStyle.containerSearch}>
+        <TextField
+          placeholder="Buscar..."
+          type="text"
+          name="name"
+          className={searchStyle.search}
+          size="small"
+          onChange={handleChange}
+        />
+      </div>
+
       <div className={cardsStyle.allCards}>
-        {data?.map((chara) => (
-          <CardComponent
-            key={chara.id}
-            image={chara.image}
-            name={chara.name}
-            onClick={() => handleOpen(chara.id)}
-          />
-        ))}
+        {
+          search ? (
+            data?.map((chara) => (
+              <CardComponent
+                key={chara.id}
+                image={chara.image}
+                name={chara.name}
+                onClick={() => handleOpen(chara.id)}
+                />
+              ))
+            ) : (
+              allCharacters?.map((chara) => (
+                <CardComponent
+                key={chara.id}
+                image={chara.image}
+                name={chara.name}
+                onClick={() => handleOpen(chara.id)}
+                />
+              ))
+            )
+          }
       </div>
 
       <Modal open={open} onClose={handleClose} className={cardsStyle.modal}>

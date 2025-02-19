@@ -1,0 +1,6 @@
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+}

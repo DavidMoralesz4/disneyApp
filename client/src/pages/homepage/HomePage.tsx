@@ -9,7 +9,9 @@ export default function HomePage() {
   return isAuth ? (
     <>
       <Navbar />
-      <Outlet />
+      <div className={homeStyles.containerGlobal}>
+        <Outlet />
+      </div>
     </>
   ) : (
     <Navigate to="/" />

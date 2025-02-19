@@ -24,14 +24,21 @@ export const charApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4001/api" }),
 
   endpoints: (build) => ({
-    getCharacters: build.query<Characters[], null>({
-      query: () => {
+    getCharacters: build.query<Characters[], string>({
+      query: (search) => {
         return {
-          url: "/characters",
-          credentials: "include",
-          method: "GET",
+          url: `/characters/search/cha?name=${search}&age=${search}&title=${search}`,
+          credentials: "include"
         };
       },
+    }),
+
+    getAllChar: build.query<Characters[], string>({
+      query: () => {
+        return {
+          url: "/characters"
+        }
+      }
     }),
 
     detailChar: build.query<CharactersDetail, string>({
@@ -46,4 +53,4 @@ export const charApi = createApi({
   }),
 });
 
-export const { useGetCharactersQuery, useDetailCharQuery } = charApi;
+export const { useGetCharactersQuery, useDetailCharQuery, useGetAllCharQuery } = charApi;

@@ -37,3 +37,10 @@
     background-color: red;
     color: white;
 }
+
+.containerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}

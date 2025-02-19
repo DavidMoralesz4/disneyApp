@@ -68,13 +68,14 @@ export default function Navbar() {
               aria-describedby="modal-modal-description"
               className={navStyle.containerModal}
             >
-              <Box >
+              <Box>
                 <ProfileComponent />
               </Box>
             </Modal>
           </div>
         </ul>
       </nav>
+
     </>
   );
 }

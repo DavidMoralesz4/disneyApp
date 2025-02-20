@@ -1,12 +1,18 @@
 import navStyle from "./nav.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AddIcon from '@mui/icons-material/Add';
 import { NavLink } from "react-router";
 import { useState } from "react";
 import ProfileComponent from "../profile/ProfileComponent";
 import { Box, Modal } from "@mui/material";
+import CreateChar from "../createChar/CreateChar";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openCreate, setOpenCreate] = useState(false)
+
+  const handleOpenCreate = () => setOpenCreate(true);
+  const handleCloseCreate = () => setOpenCreate(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -57,6 +63,23 @@ export default function Navbar() {
         </ul>
 
         <ul className={navStyle.ul2}>
+            <li onClick={handleOpenCreate}>
+              <AddIcon fontSize="large" color="action" />
+            </li>
+            <div>
+            <Modal
+              open={openCreate}
+              onClose={handleCloseCreate}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              className={navStyle.containerModalCreate}
+            >
+              <Box>
+                <CreateChar />
+              </Box>
+            </Modal>
+            </div>
+
           <li className={navStyle.user} onClick={handleOpen}>
             <AccountCircleIcon fontSize="large" color="action" />
           </li>

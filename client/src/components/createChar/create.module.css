@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 500px;
+    height: 420px;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+}
+
+.btn {
+    position: relative;
+    top: 60px;
+}

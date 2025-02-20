@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { DataCreate } from "../../components/createChar/CreateChar";
 
 export interface Characters {
   id: string;
@@ -28,7 +29,8 @@ export const charApi = createApi({
       query: (search) => {
         return {
           url: `/characters/search/cha?name=${search}&age=${search}&title=${search}`,
-          credentials: "include"
+          credentials: "include",
+          providesTags: ["Characters"], // Marca esta consulta con el tag "Characters"
         };
       },
     }),
@@ -50,7 +52,17 @@ export const charApi = createApi({
         };
       },
     }),
+
+    createChar: build.mutation<Characters, DataCreate>({
+      query: (body) => ({
+        url: '/characters',
+        method: "POST",
+        credentials: "include",
+        body, 
+        invalidatesTags: ["Characters"], // Invalida la caché de los personajes
+      }),
+    })
   }),
 });
 
-export const { useGetCharactersQuery, useDetailCharQuery, useGetAllCharQuery } = charApi;
+export const { useGetCharactersQuery, useDetailCharQuery, useGetAllCharQuery, useCreateCharMutation } = charApi;

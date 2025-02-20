@@ -12,7 +12,7 @@ interface IFormDataRegis {
 }
 
 export default function Register() {
-  const {register, handleSubmit } = useForm<IFormDataRegis>();
+  const {register, handleSubmit, reset } = useForm<IFormDataRegis>();
   const [registerUser] = useRegisterUserMutation()
   
   const navigate = useNavigate()
@@ -21,7 +21,7 @@ export default function Register() {
   const onSubmit: SubmitHandler<IFormDataRegis> = async(data) => {
     try {
       await registerUser(data)
-      // sonner.toast.success('Te registraste con exito!')
+      reset()
       toast.success('Te registraste con exito!')
       navigate('/login')
     } catch (error) {
@@ -66,7 +66,7 @@ export default function Register() {
           />
         </div>
 
-        <Button  type="submit" color="primary" variant="contained" className={loginStyle.buttonLogin}>Iniciar sesion</Button>
+        <Button  type="submit" color="primary" variant="contained" className={loginStyle.buttonLogin}>Registrar</Button>
 
         {/* <p className={loginStyle.textRegister}>Regresa a<NavLink to={'/register'}>Iniciar Sesion</NavLink></p> */}
       </div>

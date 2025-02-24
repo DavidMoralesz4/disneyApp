@@ -1,10 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+interface AllMovies {
+  id: string;
+  title: string
+  image: string
+  date_release: string;
+}
+
 export interface IMovies {
   id: string;
   title: string;
   image: string;
   date_release: string;
+  score: string
 }
 
 export const moviApi = createApi({
@@ -22,15 +30,23 @@ export const moviApi = createApi({
       },
     }),
 
-      getAllMovi: build.query<IMovies[], string>({
-          query: () => {
-            return {
-              url: "/movies"
-            }
-          }
-        }),
+    getAllMovi: build.query<AllMovies[], string>({
+      query: () => {
+        return {
+          url: "/movies",
+        };
+      },
+    }),
+
+    getDetailMovie: build.query<IMovies, string>({
+      query: (id) => ({
+        url: `/movies/${id}`,
+        credentials: "include",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-
-export const {useGetMoviesQuery, useGetAllMoviQuery} = moviApi;
+export const { useGetMoviesQuery, useGetAllMoviQuery, useGetDetailMovieQuery} =
+  moviApi;

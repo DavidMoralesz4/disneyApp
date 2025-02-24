@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    gap: 40px;
+    /* background-color: aliceblue; */
+  }
+  
+  .imgCards {
+    width: 300px;
+    height: 280px;
+  }
+  
+  .name {
+    font-weight: bold;
+    font-size: 27px;
+    color: rgb(255, 255, 255);
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .age {
+      color: white;
+  }
+  
+  .weight {
+      color: white;
+  
+  }
+  
+  .history {
+      color: white;
+  
+  }

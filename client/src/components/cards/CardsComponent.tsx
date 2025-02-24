@@ -83,9 +83,8 @@ export default function CardsComponent() {
                 name={character.name}
                 image={character.image}
                 age={character.age}
-                history={character.history}
-                movies={character.movies}
                 weight={character.weight}
+                history={character.history}
               />
               <button className={cardsStyle.btn} onClick={handleClose}>
                 <CloseIcon />

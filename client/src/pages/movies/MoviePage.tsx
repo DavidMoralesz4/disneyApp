@@ -1,19 +1,30 @@
 import CardComponent from "../../components/card/CardComponent";
-import { useGetAllMoviQuery } from "../../redux/services/moviApi";
-import cardsStyle from '../../components/cards/cards.module.css'
-import searchStyle from '../../components/searchBar/search.module.css'
-import { TextField } from "@mui/material";
+import {
+  useGetAllMoviQuery,
+  useGetDetailMovieQuery,
+  useGetMoviesQuery,
+} from "../../redux/services/moviApi";
+import cardsStyle from "../../components/cards/cards.module.css";
+import searchStyle from "../../components/searchBar/search.module.css";
+import { Box, Modal, TextField } from "@mui/material";
 import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import DetailMovies from "../../components/detailMovies/DetailMovies";
 
 export default function MoviePage() {
-  const { data: dataMovies } = useGetAllMoviQuery("");
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
+  const { data, isLoading, error } = useGetMoviesQuery(search);
+  const { data: allMovies } = useGetAllMoviQuery("");
 
-  const  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  const { data: movies } = useGetDetailMovieQuery(selectedId!, {
+    skip: !selectedId,
+  });
 
   const handleOpen = (id: string) => {
     setSelectedId(id);
@@ -25,8 +36,11 @@ export default function MoviePage() {
     setSelectedId(null);
   };
 
+  if (isLoading) return <p>Cargando...</p>;
+  if (error) return;
+
   return (
-    <div>
+    <>
       <div className={cardsStyle.containerSearch}>
         <TextField
           placeholder="Buscar..."
@@ -39,15 +53,49 @@ export default function MoviePage() {
       </div>
 
       <div className={cardsStyle.allCards}>
-        {dataMovies?.map((movie) => (
-          <CardComponent
-            name={movie.title}
-            image={movie.image}
-            date_release={movie.date_release}
-            key={movie.id}
-          />
-        ))}
+         {
+                search ? (
+                  data?.map((movie) => (
+                    <CardComponent
+                      key={movie.id}
+                      image={movie.image}
+                      name={movie.title}
+                      onClick={() => handleOpen(movie.id)}
+                      />
+                    ))
+                  ) : (
+                    allMovies?.map((movie) => (
+                      <CardComponent
+                      key={movie.id}
+                      image={movie.image}
+                      name={movie.title}
+                      onClick={() => handleOpen(movie.id)}
+                      />
+                    ))
+                  )
+                }
       </div>
-    </div>
+
+      <Modal open={open} onClose={handleClose} className={cardsStyle.modal}>
+        <Box>
+          {movies ? (
+            <div className={cardsStyle.containerDetails}>
+              <DetailMovies
+                id={movies.id}
+                title={movies.title}
+                image={movies.image}
+                score={movies.score}
+                date_release={movies.date_release}
+              />
+              <button className={cardsStyle.btn} onClick={handleClose}>
+                <CloseIcon />
+              </button>
+            </div>
+          ) : (
+            <p>Cargando detalles...</p>
+          )}
+        </Box>
+      </Modal>
+    </>
   );
 }

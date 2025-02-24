@@ -1,17 +1,5 @@
+import { CharactersDetail } from "../../redux/services/charApi";
 import detailStyle from "./detail.module.css";
-
-// interface IMovies {
-//     title: string
-// }
-
-interface PropsDetail {
-  name: string;
-  image: string;
-  age: number;
-  weight: number;
-  history: string;
-  movies: any;
-}
 
 export default function DetailCards({
   name,
@@ -19,8 +7,7 @@ export default function DetailCards({
   age,
   weight,
   history,
-  movies,
-}: PropsDetail) {
+}: CharactersDetail) {
   return (
     <div className={detailStyle.container}>
       <div>
@@ -28,10 +15,9 @@ export default function DetailCards({
       </div>
       <div>
         <p className={detailStyle.name}>{name}</p>
-        <p className={detailStyle.age}>Ano:  {age}</p>
-        <p className={detailStyle.weight}>Peso:  {weight}kg</p>
+        <p className={detailStyle.age}>Ano: {age}</p>
+        <p className={detailStyle.weight}>Peso: {weight}kg</p>
         <p className={detailStyle.history}>Descripcion: {history}</p>
-        <strong className={detailStyle.movies}>{movies}</strong>
       </div>
     </div>
   );

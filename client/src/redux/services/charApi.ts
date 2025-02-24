@@ -7,17 +7,12 @@ export interface Characters {
   image: string;
 }
 
-interface IMovies {
-  title: string;
-}
-
-interface CharactersDetail {
+export interface CharactersDetail {
   name: string;
   image: string;
   age: number;
   weight: number;
   history: string;
-  movies: IMovies;
 }
 
 export const charApi = createApi({

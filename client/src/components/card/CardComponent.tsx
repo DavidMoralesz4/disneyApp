@@ -1,13 +1,12 @@
 import { Card } from "@mui/material";
 import cardStyle from "./card.module.css";
-import { DateRange } from "@mui/icons-material";
 
 interface PropsCard {
   image: string;
   name: string;
   date_release?: string
   title?: string
-  onClick?: () => void;
+  onClick?: (value: any) => void;
 
 }
 

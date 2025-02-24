@@ -64,7 +64,7 @@ export default function Navbar() {
 
         <ul className={navStyle.ul2}>
             <li onClick={handleOpenCreate}>
-              <AddIcon fontSize="large" color="action" />
+              <AddIcon fontSize="large" color="inherit" />
             </li>
             <div>
             <Modal
@@ -81,7 +81,7 @@ export default function Navbar() {
             </div>
 
           <li className={navStyle.user} onClick={handleOpen}>
-            <AccountCircleIcon fontSize="large" color="action" />
+            <AccountCircleIcon fontSize="large" color="inherit" />
           </li>
           <div>
             <Modal
